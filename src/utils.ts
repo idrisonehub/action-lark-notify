@@ -65,15 +65,20 @@ export function getCardHeader() {
 }
 
 export function getCardElements() {
-  const result = shell.exec("git log -1 --pretty=%B", { silent: true });
-  if (result.code !== 0) {
-    core.setFailed(
-      `Cannot get Git information. Have you setup the action correctly? ${
-        result.stderr ?? result.stdout
-      }`,
-    );
+  let lastGitMessage = ''
+  if (process.env.LARK_MESSAGE_MESSAGE)
+    lastGitMessage = process.env.LARK_MESSAGE_MESSAGE
+  else {
+    const result = shell.exec("git log -1 --pretty=%B", { silent: true });
+    if (result.code !== 0) {
+      core.setFailed(
+        `Cannot get Git information. Have you setup the action correctly? ${
+          result.stderr ?? result.stdout
+        }`,
+      );
+    }
+    lastGitMessage = result.stdout.trim();
   }
-  const lastGitMessage = result.stdout.trim();
 
   return [
     {
