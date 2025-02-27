@@ -35088,9 +35088,11 @@ function getRequestBody() {
             }
           }
         }
-        return Object.assign(Object.assign(custom, requestSignature), { msg_type: "interactive", card: {
+        return Object.assign(Object.assign({}, requestSignature), { msg_type: "interactive", card: {
                 // header,
                 // elements,
+                header: custom.header,
+                elements: custom.elements,
                 config,
                 card_link: link,
             } });
