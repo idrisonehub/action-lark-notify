@@ -35028,7 +35028,10 @@ function getCardElements() {
         },
         {
             tag: "div",
-            content: `**Message**\n${lastGitMessage}`,
+            text: {
+              content: `**Message**\n${lastGitMessage}`,
+              tag: "lark_md"
+            }
         },
     ];
 }
