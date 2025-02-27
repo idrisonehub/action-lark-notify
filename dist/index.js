@@ -35089,10 +35089,8 @@ function getRequestBody() {
           }
         }
         return Object.assign(Object.assign({}, requestSignature), { msg_type: "interactive", card: {
-                // header,
-                // elements,
-                header: custom.header,
-                elements: custom.elements,
+                header: process.env.IDRIS_TEST ? custom.header : header,
+                elements: process.env.IDRIS_TEST ? custom.elements : elements,
                 config,
                 card_link: link,
             } });
