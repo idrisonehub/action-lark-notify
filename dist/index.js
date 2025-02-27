@@ -35030,7 +35030,7 @@ function getCardElements() {
             tag: "div",
             text: {
               content: `**Message**\n${lastGitMessage}`,
-              tag: "plain_text"
+              tag: "lark_md"
             }
         },
     ];
