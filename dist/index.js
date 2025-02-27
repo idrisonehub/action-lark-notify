@@ -35056,21 +35056,7 @@ function getRequestBody() {
         const elements = getCardElements();
         const config = getCardConfig();
         const link = getCardLink();
-        return Object.assign(Object.assign({}, requestSignature), { msg_type: "interactive", card: {
-                header,
-                elements,
-                config,
-                card_link: link,
-            } });
-    });
-}
-function notify() {
-    return __awaiter(this, void 0, void 0, function* () {
-        const httpClient = new lib.HttpClient();
-        const requestUrl = getRequestUrl();
-        core.debug(`Request URL: ${requestUrl}`);
-        // const requestBody = yield getRequestBody();
-        const requestBody = {
+        const custom = {
           "elements": [
             {
               "tag": "div",
@@ -35102,6 +35088,20 @@ function notify() {
             }
           }
         }
+        return Object.assign(Object.assign(custom, requestSignature), { msg_type: "interactive", card: {
+                // header,
+                // elements,
+                config,
+                card_link: link,
+            } });
+    });
+}
+function notify() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const httpClient = new lib.HttpClient();
+        const requestUrl = getRequestUrl();
+        core.debug(`Request URL: ${requestUrl}`);
+        const requestBody = yield getRequestBody();
         core.debug(`Request Body: ${JSON.stringify(requestBody, null, 2)}`);
         return httpClient
             .postJson(requestUrl, requestBody)
