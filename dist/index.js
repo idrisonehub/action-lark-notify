@@ -35027,7 +35027,7 @@ function getCardElements() {
             ],
         },
         {
-            tag: "text",
+            tag: "div",
             content: `**Message**\n${lastGitMessage}`,
         },
     ];
