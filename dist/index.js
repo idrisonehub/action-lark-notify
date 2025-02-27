@@ -34933,8 +34933,8 @@ function getCardElements() {
         core.setFailed(`Cannot get Git information. Have you setup the action correctly? ${(_a = result.stderr) !== null && _a !== void 0 ? _a : result.stdout}`);
     }
     let lastGitMessage = process.env.LARK_MESSAGE_MESSAGE || result.stdout.trim();
-    if (typeof lastGitMessage === 'string')
-      lastGitMessage = lastGitMessage.replace(/!\[/g, '\\![')
+    // if (typeof lastGitMessage === 'string')
+    //   lastGitMessage = lastGitMessage.replace(/!\[/g, '\\![')
     return [
         {
             tag: "column_set",
@@ -35027,7 +35027,7 @@ function getCardElements() {
             ],
         },
         {
-            tag: "markdown",
+            tag: "plain_text",
             content: `**Message**\n${lastGitMessage}`,
         },
     ];
