@@ -35069,7 +35069,39 @@ function notify() {
         const httpClient = new lib.HttpClient();
         const requestUrl = getRequestUrl();
         core.debug(`Request URL: ${requestUrl}`);
-        const requestBody = yield getRequestBody();
+        // const requestBody = yield getRequestBody();
+        const requestBody = {
+          "elements": [
+            {
+              "tag": "div",
+              "text": {
+                "content": "**West Lake**, located at No. 1 Longjing Road, Xihu District, Hangzhou City, Zhejiang Province, west of Hangzhou City, with a total area of 49 square kilometers, a catchment area of 21.22 square kilometers, and a lake area of 6.38 square kilometers km.",
+                "tag": "lark_md"
+              }
+            },
+            {
+              "actions": [
+                {
+                  "tag": "button",
+                  "text": {
+                    "content": "More attractions introduction: Rose:",
+                    "tag": "lark_md"
+                  },
+                  "url": "https://www.example.com",
+                  "type": "default",
+                  "value": {}
+                }
+              ],
+              "tag": "action"
+            }
+          ],
+          "header": {
+            "title": {
+              "content": "Today's travel recommendation",
+              "tag": "plain_text"
+            }
+          }
+        }
         core.debug(`Request Body: ${JSON.stringify(requestBody, null, 2)}`);
         return httpClient
             .postJson(requestUrl, requestBody)
